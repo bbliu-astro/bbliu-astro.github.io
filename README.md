@@ -22,13 +22,22 @@ http://localhost:8002/en/
 If this folder is connected to `https://github.com/bbliu-astro/bbliu-astro.github.io`,
 push the `main` branch. In GitHub, set Pages to publish from `main` / root.
 
-## Rebuild from the current Google Sites mirror
+## Sync English and Chinese Pages
 
 From the parent folder:
 
 ```bash
-python3 tools/build_github_pages.py
+python3 tools/sync_github_pages.py
 ```
 
-That copies `site/` to `github-pages/en/`, keeps the Google Sites generated
-structure, and adds edit comments to `en/index.html`.
+That rebuilds `github-pages/en/` first, then regenerates `github-pages/cn/`
+from the English pages with the Chinese translation and layout adjustments.
+Use this command after changing the English source so the Chinese version stays
+in sync.
+
+The sync command runs:
+
+```bash
+python3 tools/build_github_pages.py
+python3 tools/build_chinese_pages.py
+```
